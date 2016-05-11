@@ -1,29 +1,43 @@
 (function () {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('AngularTemplateApp')
-        .factory('TestService', TestService);
+  angular
+      .module('AngularTemplateApp')
+      .factory('TestService', TestService);
 
-    TestService.$inject = ['$q', '$timeout'];
+  TestService.$inject = ['$q', '$timeout', 'TestDependencyService', '$http'];
 
-    function TestService($q, $timeout) {
-        var service = {
-            someField: 'someValue',
-            someMethod: someMethod
-        };
+  function TestService($q, $timeout, TestDependencyService, $http) {
+    var service = {
+      someField: 'someValue',
+      returnValue: '',
+      someMethod: someMethod,
+      useDependency: useDependency,
+      getFromHttp: getFromHttp
+    };
 
-        var somePrivateField;
+    var somePrivateField;
 
-        return service;
+    return service;
 
-        ////////////
+    ////////////
 
-        function someMethod(someParam) {
-            $timeout(function() {
-                console.log('test');
-            }, 1000);
-        }
+    function useDependency() {
+      return TestDependencyService.someMethodInDependencyService();
     }
+
+    function someMethod(someParam) {
+      $timeout(function () {
+        console.log('test');
+      }, 1000);
+    }
+
+    function getFromHttp() {
+      $http.get('http://test.com/foo').then(function (response) {
+            service.returnValue = response.data;
+          }
+      )
+    }
+  }
 
 })();
