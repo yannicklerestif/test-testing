@@ -1,0 +1,17 @@
+<!doctype html>
+<html ng-app="AngularTemplateApp">
+<head>
+    <title>Angular Template App</title>
+    <link href="lib/bootstrap-3.3.6-dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <!-- load jquery before angular otherwise directives won't use it to wrap elements -->
+    <script src="lib/jquery.js"></script>
+    <script src="lib/angular.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/services/test.service.js"></script>
+    <script src="js/controllers/test.controller.js"></script>
+</head>
+<body ng-controller="TestCtrl as testCtrl">
+{{testCtrl.somePublicField}}
+</body>
+</html>
