@@ -20,7 +20,7 @@ module.exports = function(config) {
       'www/js/app.js',
       'www/js/controllers/*.js',
       'www/js/services/*.js',
-      'tests/*.test.js'
+      'tests/unit/*.test.js'
     ],
 
 
